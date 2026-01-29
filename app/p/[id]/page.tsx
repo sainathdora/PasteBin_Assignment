@@ -37,10 +37,9 @@ export default async function PastePage({ params }: PageProps) {
             <pre className="whitespace-pre-wrap break-words p-4 rounded text-sm leading-relaxed text-black">
                 {paste.Content}
             </pre>
+        <CopyBtn id ={id}/>
         </div>
-
     </main>
-      <CopyBtn id ={id}/>
     </>
 
 
