@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Secret PasteBin
 
-## Getting Started
+A lightweight, secure PasteBin application built with Next.js and PostgreSQL. This tool allows users to create temporary text "pastes" that automatically self-destruct based on a time-to-live (TTL) or a maximum view count.
+---
 
-First, run the development server:
+🛠 Features
+Self-Destructing Pastes: Set an expiration timer in seconds.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+View Limits: Set a maximum number of allowed views before the paste is deleted.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+High-Contrast UI: Minimalist black-and-white design for maximum readability.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Real-time Validation: Ensuring every paste has at least one safety restriction (TTL or Views).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+UUID Protection: Every paste is assigned a unique, non-guessable identifier.
+---
 
-## Learn More
+## 🚀 Local Setup
 
-To learn more about Next.js, take a look at the following resources:
+Follow these steps to get the project running on your local machine:
+<p><b>Devlopment:</b></p>
+<pre>
+  <code>
+      git clone https://github.com/sainathdora/PasteBin_Assignment.git
+      cd PasteBin_Assignment
+      npm i
+      npm run dev
+  </code>
+</pre>
+<p><b>Production:</b></p>
+<pre>
+  <code>
+    npm run build
+    npm start
+  </code>
+</pre>
+<hr>
+<h1>Note: The project uses neon postgres database, so while creating a <code>.env</code> folder, these variables must be present</h1>
+<ol>
+  <li>DATABASE_URL</li>
+  <li>DATABASE_URL_UNPOOLED</li>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  <li>PGHOST</li>
+  <li>PGHOST_UNPOOLED</li>
+  <li>PGUSER</li>
+  <li>PGDATABASE</li>
+  <li>PGPASSWORD</li>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+  <li>POSTGRES_URL</li>
+  <li>POSTGRES_URL_NON_POOLING</li>
+  <li>POSTGRES_USER</li>
+  <li>POSTGRES_HOST</li>
+  <li>POSTGRES_PASSWORD</li>
+  <li>POSTGRES_DATABASE</li>
+  <li>POSTGRES_URL_NO_SSL</li>
+  <li>POSTGRES_PRISMA_URL</li>
 
-## Deploy on Vercel
+  <li>TEST_MODE</li>
+</ol>
+<h3>TEST_MODE</h3>
+<p>If the environment variable <pre>
+  <code>
+  TEST_MODE=1
+  </code>
+</pre>
+is set:<br>
+  The request header <code>x-test-now-ms(milliseconds since epoch)</code> 
+must be treated as the current time for expiry logic only</p>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<hr>
+<h1>Persistence Layer</h1>
+This project uses PostgreSQL hosted on Neon as its persistence layer.
+Neon provides a serverless PostgreSQL experience with high availability. The database schema manages the following:
+<ul>
+  <li>
+    ID: Primary key (UUID).
+  </li>
+<li>Content: The raw text data.
+</li>
+  <li>
+Created: Timestamp of creation.
+  </li>
+<li>
+Expiry: Optional timestamp for time-based deletion.
+</li>
+<li>
+ViewsLeft: Integer count for view-based deletion.
+</li>
+</ul>
