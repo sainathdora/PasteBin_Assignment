@@ -87,3 +87,21 @@ Expiry: Optional timestamp for time-based deletion.
 ViewsLeft: Integer count for view-based deletion.
 </li>
 </ul>
+<hr>
+<h1>Demo</h1>
+<ol>
+  <li>
+    1)Visit <a href="https://paste-bin-assignment.vercel.app/">Website</a>
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8aa6fc49-daf4-4dee-96fa-6c48c6752593" />
+  </li>
+  <li>
+    Add the content and set the max views(optional) and expiry(optional), you have to set either of them only then input will be accepted
+  </li>
+  <li>
+    Click on Create Paste
+  </li>
+  <li>
+    <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/56d7e679-38e1-4596-b7a7-a7f561ed058a" />
+    <p>You can now Copy the url and share it with others!!. This content will persist until the given constrainsts are violated(either time or max views).</p>
+  </li>
+</ol>
